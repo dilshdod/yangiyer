@@ -1,0 +1,180 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*,*:before,*:after{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+:focus,:active{outline:none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display:block;}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input,button,textarea{font-family: inherit;}
+
+
+input::-ms-clear{display: none;}
+button{cursor:pointer;}
+button::-moz-focus-inner{padding: 0;border: 0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration:none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+/*------------------*/
+@font-face {
+    font-family: 'ven';
+    src: url("../fonts/VenusRising.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} 
+@font-face {
+    font-family: 'uni';
+    src: url("../fonts/unispace.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} 
+@font-face {
+    font-family: 'tusj';
+    src: url("../fonts/tusj.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} 
+body{
+    background-color: #F7D568;
+}
+
+.wrapper{
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container{
+    width: 95%;
+}
+.head__row{
+    border: 1px solid #000;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #03fbd229;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgb(0, 255, 229);
+}
+.imglogo{
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+.imglogo img{
+    
+    display: block;
+}
+.columntitle{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.columntitle h1{
+    font-size: 22px;
+    font-family: "ven";
+    margin: 20px 0px 10px 0px;
+    color: blue;
+    text-align: center;
+    text-shadow: 0 0 5px green;
+    transition: 0.5s linear;
+}
+.columntitle h1:hover{
+    font-size: 20px;
+    text-shadow: 0 0 8px rgb(240, 232, 6);
+    letter-spacing: 5px;
+}
+.columntitle p{
+    text-align: center;
+    font-family: "ven";
+    margin-bottom: 10px;
+    color: #111317;
+}
+.ssilkalar{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+.telegram{
+    font-size: 20px;
+    border: 2px solid white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px ;
+    transition: 0.5s ease;
+    margin-right: 20px;
+}
+.telegram:hover{
+    background: white;
+    box-shadow: 0px 0px 10px blue;
+}
+.shiyor {
+display: flex;
+width: 100%;
+font-size: 40px;
+justify-content: left;
+font-family: "tusj";
+margin: 20px 0px 0px 20px;
+}
+.shiyor h3{
+    text-align: right;
+}
+.ellikfoiz{
+  width: 50%;
+  margin-left: 20px;
+  color: #111317;
+}
+#phoneicon{
+    display: block;
+    font-size: 20px;
+    color: #111317;
+}
+
+@media screen and (max-width: 867px) {
+    .telegram{
+        font-size: 10px;
+    }
+    .columntitle h1{
+        font-size: 15px;
+    }
+    .imglogo{
+        width: 75px;
+        height: 75px;
+    }
+    .columntitle p{
+        font-size: 10px;
+    }
+    .shiyor{
+        font-size: 20px;
+    }
+}
+@media(min-width:767px) and (max-width:1023px){
+
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobobekov School</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome stilini chaqirish -->
+
+</head>
+<body >
+    <div class="wrapper">
+        <head>
+            <div class="container">
+                <div class="head__row">
+                    <img class="imglogo" src="images/logom.png" alt="">
+                    <div class="columntitle">
+                        <h1>Bobobekov Dilshod Davronovich</h1>
+                        <p>Shaxsiy web sayti</p>
+                        <div class="ssilkalar">
+                            <a class="telegram" target="_blank" href="https://www.youtube.com/channel/UCwBSpmnGoHKEuavUwvYeFew">
+                                <i class="fab fa-youtube"></i>You tube
+                            </a>
+                            <a class="telegram" target="_blank" href="sertifikatlar.html">
+                                <i class="fas fa-certificate"></i>Sertifikatlar
+                            </a>
+                            <a class="telegram" href="shogirtlar.html">
+                                <i class="fas fa-users"></i>Shogirtlar
+                            </a>
+                            <a class="telegram" href="https://t.me/newplacesity">
+                                <i class="fab fa-telegram">Telegram</i>
+                            </a>
+                            <div class="telegram">
+                                <i id="phoneIcon" class="fas fa-phone"></i>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                
+                <!--Ikkinchi block-->
+                <div class="shiyor">
+
+               <div class="ellikfoiz">
+                <h2><i class="fas fa-feather-alt"></i> Biz bilan o'qing,izlaning va</h2>
+                <h3>o'zingizni kashf qiling....</h3>
+               </div>
+            </div>
+            </div>
+        </head>
+
+        
+
+
+    </div>
+    <script>
+        let check=0
+        document.getElementById("phoneIcon").addEventListener("click", function() {
+    var phoneNumber = " +998990190788"; // Telefon raqamini shu o'zgaruvchiga joylashtiring
+    if(check===0){
+        let icon=document.getElementById("phoneIcon");
+        icon.textContent = phoneNumber;
+        check=1
+    }else{
+        let icon=document.getElementById("phoneIcon");
+        icon.textContent = "";
+        check=0
+    }
+    
+    
+     });
+
+    </script>
+
+    
+</body>
+</html>
