@@ -7,6 +7,7 @@ import { insertUser, initDB } from './db.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(express.urlencoded({ extended: true }));
 
 // __dirname (ES module’da yo‘q, qo‘lda beramiz)
 const __filename = fileURLToPath(import.meta.url);
@@ -60,3 +61,4 @@ await initDB();
 app.listen(PORT, () => {
   console.log(`🚀 Server running on ${PORT}`);
 });
+
