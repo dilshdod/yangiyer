@@ -48,7 +48,7 @@ app.post('/users', async (req, res) => {
     };
 
     const saved = await insertUser(user);
-    res.json({ ok: true, user: saved });
+    res.redirect("/success.html");
   } catch (e) {
     res.status(500).json({ ok: false, error: e.message });
   }
@@ -61,4 +61,5 @@ await initDB();
 app.listen(PORT, () => {
   console.log(`🚀 Server running on ${PORT}`);
 });
+
 
