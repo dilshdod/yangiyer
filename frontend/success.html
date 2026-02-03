@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Motivation Popup</title>
+
+      <style>
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+             font-family: system-ui
+         }
+
+         /* POPUP */
+         .motivate-popup {
+             position: fixed;
+             inset: 0;
+             background: rgba(15, 23, 42, .45);
+             display: none;
+             align-items: center;
+             justify-content: center;
+             z-index: 999;
+         }
+
+         .motivate-popup.show {
+             display: flex;
+             animation: fadeIn .3s ease;
+         }
+
+         .popup-card {
+             background: #fff;
+             padding: 32px;
+             border-radius: 22px;
+             text-align: center;
+             width: 90%;
+             max-width: 360px;
+             box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+             animation: pop .4s ease;
+         }
+
+
+
+         .popup-card h2 {
+             margin-bottom: 8px
+         }
+
+         .popup-card p {
+             opacity: .7;
+             margin-bottom: 22px
+         }
+
+         .popup-card a {
+            text-decoration: none;
+            display: inline-block;
+             padding: 12px 26px;
+             border: none;
+             border-radius: 14px;
+             background: #2563eb;
+             color: white;
+             font-size: 15px;
+             cursor: pointer;
+         }
+         img{
+             width: 200px;
+             height: auto;
+         }
+
+         @keyframes pop {
+             from {
+                 transform: scale(.85);
+                 opacity: 0
+             }
+
+             to {
+                 transform: scale(1);
+                 opacity: 1
+             }
+         }
+
+         @keyframes fadeIn {
+             from {
+                 opacity: 0
+             }
+
+             to {
+                 opacity: 1
+             }
+         }
+      </style>
+   </head>
+
+   <body>
+      <!-- MOTIVATION ALERT -->
+      <div id="motivatePopup" class="motivate-popup">
+         <div class="popup-card">
+            <div class="icon">
+               <img src="photo_2026-02-03_17-25-03.jpg" alt="" />
+            </div>
+            <h2 id="popupTitle"></h2>
+            <p id="popupText"></p>
+            <a href="./index.html" id="continueBtn">Ok</a>
+         </div>
+      </div>
+
+      <script>
+         const popup = document.getElementById("motivatePopup");
+         const btn = document.getElementById("continueBtn");
+         const popupTitle = document.getElementById("popupTitle");
+         const popupText = document.getElementById("popupText");
+
+         // Random motivational texts
+         const messages = [
+             { title: "Ro'yhatdan o'tdingiz!", text: "ro'yhatdan o'tganingiz uchun rahmat" },
+
+         ];
+
+         function openMotivation() {
+             // Random message
+             const msg = messages[Math.floor(Math.random() * messages.length)];
+             popupTitle.textContent = msg.title;
+             popupText.innerHTML = msg.text;
+
+             popup.classList.add("show");
+
+
+         }
+
+         function closeMotivation() {
+             popup.classList.remove("show");
+         }
+
+         btn.onclick = closeMotivation;
+
+         /* Example: automatically open after page load */
+         setTimeout(openMotivation, 800);
+      </script>
+   </body>
+</html>
