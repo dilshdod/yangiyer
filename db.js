@@ -32,4 +32,16 @@ export async function insertUser(user) {
   return result.rows[0]; // qo‘shilgan user
 }
 
+// ✅ B A R C H A userlarni olish
+export async function getAllUsers() {
+  const result = await pool.query(
+    `SELECT id, data, created_at
+     FROM users
+     ORDER BY id DESC`
+  );
+
+  return result.rows; // massiv qaytaradi
+}
+
 export default pool;
+
