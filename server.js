@@ -33,10 +33,9 @@ app.post('/users', async (req, res) => {
    try {
       const { ism, familiya, nomer, parol, turi } = req.body;
 
+      // Majburiy maydonlar
       if (!ism || !familiya || !nomer || !parol) {
-         return res
-            .status(400)
-            .json({ ok: false, error: 'Majburiy maydonlar yo‘q' });
+         return res.status(400).send('Majburiy maydonlar yo‘q');
       }
 
       const user = {
@@ -47,12 +46,15 @@ app.post('/users', async (req, res) => {
          turi: turi || 'user',
       };
 
-      const saved = await insertUser(user);
+      await insertUser(user);
+
+      // muvaffaqiyatli bo‘lsa success.html ga yo‘naltiramiz
       res.sendFile(path.join(__dirname, 'frontend', 'success.html'));
    } catch (e) {
-      res.status(500).json({ ok: false, error: e.message });
+      res.status(500).send('Server xatosi: ' + e.message);
    }
 });
+
 
 // barcha userlarni olish
 app.get('/allusers', async (req, res) => {
@@ -70,5 +72,6 @@ await initDB();
 app.listen(PORT, () => {
    console.log(`🚀 Server ishga tushdi: ${PORT}`);
 });
+
 
 
