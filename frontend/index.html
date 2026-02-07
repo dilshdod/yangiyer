@@ -43,53 +43,39 @@
   </style>
 </head>
 <body>
-  <form id="registerForm">
-    <div class="container">
-      <div class="header">
-        <div class="avatar">
-          <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" />
-        </div>
-        <h2>Ro'yxatdan o'ting</h2>
-      </div>
+<form action="/users" method="post">
+  <div class="field">
+    <input id="ism" name="ism" placeholder=" " />
+    <label>Ism</label>
+    <div class="error">Ismni kiriting</div>
+  </div>
 
-      <div class="field">
-        <input id="ism" name="ism" placeholder=" " />
-        <label>Ism</label>
-        <div class="error">Ismni kiriting</div>
-      </div>
+  <div class="field">
+    <input id="familya" name="familiya" placeholder=" " />
+    <label>Familya</label>
+    <div class="error">Familyani kiriting</div>
+  </div>
 
-      <div class="field">
-        <input id="familya" name="familiya" placeholder=" " />
-        <label>Familya</label>
-        <div class="error">Familyani kiriting</div>
-      </div>
+  <div class="field">
+    <input id="telefon" name="nomer" placeholder=" " value="+998" />
+    <label>Telefon</label>
+    <div class="error">Telefon kiriting</div>
+  </div>
 
-      <div class="field">
-        <input id="telefon" name="nomer" placeholder=" " value="+998" />
-        <label>Telefon</label>
-        <div class="error">Telefon kiriting</div>
-      </div>
+  <div class="field">
+    <input id="parol" name="parol" type="password" placeholder=" " />
+    <label>Parol</label>
+    <span class="pass-toggle" onclick="togglePassword()">
+      <img id="eyeIcon" src="https://cdn-icons-png.flaticon.com/512/709/709612.png"/>
+    </span>
+    <div class="error">Parol kiriting</div>
+  </div>
 
-      <div class="field">
-        <input id="parol" name="parol" type="password" placeholder=" " />
-        <label>Parol</label>
-        <span class="pass-toggle" onclick="togglePassword()">
-          <img id="eyeIcon" src="https://cdn-icons-png.flaticon.com/512/709/709612.png" />
-        </span>
-        <div class="error">Parol kiriting</div>
-      </div>
+  <input type="hidden" name="turi" id="turiInput" value="ishchi" />
 
-      <p class="role-label">Siz kimsiz?</p>
-      <div class="role-switch" onclick="toggleRole()">
-        <div class="role-slider" id="roleSlider"></div>
-        <span id="roleLeft" class="active">Ishchi</span>
-        <span id="roleRight">Ish beruvchi</span>
-      </div>
+  <button type="submit" class="btn">Davom etish</button>
+</form>
 
-      <button class="btn" type="submit">Davom etish</button>
-      <input type="hidden" name="turi" id="turiInput" value="ishchi" />
-    </div>
-  </form>
 
   <script>
     let userRole = "ishchi";
@@ -167,3 +153,4 @@
   </script>
 </body>
 </html>
+
