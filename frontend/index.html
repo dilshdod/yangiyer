@@ -1,158 +1,169 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ro'yxatdan o'tish</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Inter;}
-  body{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(120deg,#0f172a,#052e16,#022c22);background-size:400% 400%;animation:bg 10s infinite;overflow:hidden;}
-  @keyframes bg{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-  .container{width:100%;max-width:420px;background:rgba(255,255,255,0.06);backdrop-filter:blur(24px);padding:32px;border-radius:26px;border:1px solid rgba(255,255,255,0.2);box-shadow:0 30px 70px rgba(0,0,0,0.5);position:relative;}
-  .header{text-align:center;margin-bottom:26px;}
-  .avatar{width:86px;height:86px;margin:0 auto 14px;border-radius:50%;position:relative;}
-  .avatar::before{content:"";position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(#22c55e,#06b6d4,#22c55e);animation:spin 4s linear infinite;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-  .avatar img{width:100%;height:100%;border-radius:50%;position:relative;z-index:1;background:#0f172a;padding:10px;}
-  .header h2{font-size:26px;font-weight:700;background:linear-gradient(135deg,#22c55e,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-  .header p{color:#ccfbf1;font-size:14px;margin-top:6px;}
-  .field{position:relative;margin-bottom:20px;}
-  .field input{width:100%;padding:18px 14px;border-radius:14px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:#fff;outline:none;position:relative;z-index:2;}
-  .field label{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#a7f3d0;pointer-events:none;transition:0.3s;background:transparent;z-index:2;}
-  .field input:focus + label, .field input:not(:placeholder-shown) + label{top:-8px;font-size:12px;color:#22c55e;background:#022c22;padding:0 6px;}
-  .field input:focus{border-color:#22c55e;box-shadow:0 0 12px rgba(34,197,94,0.6);}
-  .error{font-size:12px;color:#fb7185;margin-top:4px;display:none;}
-  .input-error{border-color:#fb7185 !important;}
-  .shake{animation:shake 0.35s;}
-  @keyframes shake{0%{transform:translateX(0);}25%{transform:translateX(-4px);}50%{transform:translateX(4px);}75%{transform:translateX(-4px);}100%{transform:translateX(0);}}
-  .btn{width:100%;padding:16px;border-radius:20px;border:none;font-size:16px;font-weight:600;background:linear-gradient(135deg,#22c55e,#06b6d4);color:#022c22;cursor:pointer;position:relative;overflow:hidden;}
-  .btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);transform:translateX(-100%);}
-  .btn:hover::after{animation:shine 1.2s;}
-  @keyframes shine{to{transform:translateX(100%);}}
-  .pass-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;opacity:0.8;transition:0.3s;}
-  .pass-toggle img{width:22px;filter:grayscale(100%);transition:0.3s;}
-  .role-switch{position:relative;width:260px;height:56px;margin:0 auto 26px;background:rgba(255,255,255,0.08);border-radius:40px;display:flex;align-items:center;justify-content:space-between;padding:6px;cursor:pointer;overflow:hidden;backdrop-filter:blur(12px);box-shadow:inset 0 0 20px rgba(255,255,255,0.08);}
-  .role-switch span{width:50%;text-align:center;z-index:2;font-weight:600;color:#94fdf3;transition:0.4s;}
-  .role-switch span.active{color:#022c22;}
-  .role-slider{position:absolute;width:50%;height:44px;left:6px;background:linear-gradient(135deg,#22c55e,#06b6d4);border-radius:34px;transition:0.45s cubic-bezier(.68,-0.55,.27,1.55);box-shadow:0 0 25px rgba(34,197,94,0.6);}
-  .role-switch.employer .role-slider{left:calc(50% - 6px);}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ro'yxatdan o'tish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* --- Dizayn va animatsiyalarni o'zgartirmadik --- */
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Inter;}
+    body{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(120deg,#0f172a,#052e16,#022c22);background-size:400% 400%;animation:bg 10s infinite;position:relative;overflow:hidden;}
+    @keyframes bg{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+    .container{width:100%;max-width:420px;background:rgba(255,255,255,0.06);backdrop-filter:blur(24px);padding:32px;border-radius:26px;border:1px solid rgba(255,255,255,0.2);box-shadow:0 30px 70px rgba(0,0,0,0.5);animation:card 0.8s cubic-bezier(0.22,1,0.36,1);position:relative;z-index:1;}
+    @keyframes card{from{opacity:0;transform:translateY(40px) scale(0.95);}to{opacity:1;transform:none;}}
+    .header{text-align:center;margin-bottom:26px;}
+    .avatar{width:86px;height:86px;margin:0 auto 14px;border-radius:50%;position:relative;}
+    .avatar::before{content:"";position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(#22c55e,#06b6d4,#22c55e);animation:spin 4s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .avatar img{width:100%;height:100%;border-radius:50%;position:relative;z-index:1;background:#0f172a;padding:10px;}
+    .header h2{font-size:26px;font-weight:700;background:linear-gradient(135deg,#22c55e,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .header p{color:#ccfbf1;font-size:14px;margin-top:6px;}
+    .field{position:relative;margin-bottom:20px;}
+    .field input{width:100%;padding:18px 14px;border-radius:14px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:#fff;outline:none;position:relative;z-index:2;}
+    .field label{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#a7f3d0;pointer-events:none;transition:0.3s;background:transparent;z-index:2;}
+    .field input:focus + label,.field input:not(:placeholder-shown) + label{top:-8px;font-size:12px;color:#22c55e;background:#022c22;padding:0 6px;}
+    .field input:focus{border-color:#22c55e;box-shadow:0 0 12px rgba(34,197,94,0.6);}
+    .error{font-size:12px;color:#fb7185;margin-top:4px;display:none;}
+    .input-error{border-color:#fb7185 !important;}
+    .shake{animation:shake 0.35s;}
+    @keyframes shake{0%{transform:translateX(0);}25%{transform:translateX(-4px);}50%{transform:translateX(4px);}75%{transform:translateX(-4px);}100%{transform:translateX(0);}}
+    .btn{width:100%;padding:16px;border-radius:20px;border:none;font-size:16px;font-weight:600;background:linear-gradient(135deg,#22c55e,#06b6d4);color:#022c22;cursor:pointer;position:relative;overflow:hidden;}
+    .btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);transform:translateX(-100%);}
+    .btn:hover::after{animation:shine 1.2s;}
+    @keyframes shine{to{transform:translateX(100%);}}
+    .pass-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;opacity:0.8;transition:0.3s;}
+    .pass-toggle img{width:22px;filter:grayscale(100%);transition:0.3s;}
+    .pass-toggle:hover{transform:translateY(-50%) scale(1.2);opacity:1;}
+    .role-switch{position:relative;width:260px;height:56px;margin:0 auto 26px;background:rgba(255,255,255,0.08);border-radius:40px;display:flex;align-items:center;justify-content:space-between;padding:6px;cursor:pointer;overflow:hidden;backdrop-filter:blur(12px);box-shadow:inset 0 0 20px rgba(255,255,255,0.08);}
+    .role-switch span{width:50%;text-align:center;z-index:2;font-weight:600;color:#94fdf3;transition:0.4s;}
+    .role-switch span.active{color:#022c22;}
+    .role-slider{position:absolute;width:50%;height:44px;left:6px;background:linear-gradient(135deg,#22c55e,#06b6d4);border-radius:34px;transition:0.45s cubic-bezier(.68,-0.55,.27,1.55);box-shadow:0 0 25px rgba(34,197,94,0.6);}
+    .role-switch.employer .role-slider{left:calc(50% - 6px);}
+  </style>
 </head>
-
 <body>
-<form id="regForm">
-  <div class="container">
-    <div class="header">
-      <div class="avatar">
-        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" />
+  <form id="registerForm">
+    <div class="container">
+      <div class="header">
+        <div class="avatar">
+          <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" />
+        </div>
+        <h2>Ro'yxatdan o'ting</h2>
       </div>
-      <h2>Ro'yxatdan o'ting</h2>
+
+      <div class="field">
+        <input id="ism" name="ism" placeholder=" " />
+        <label>Ism</label>
+        <div class="error">Ismni kiriting</div>
+      </div>
+
+      <div class="field">
+        <input id="familya" name="familiya" placeholder=" " />
+        <label>Familya</label>
+        <div class="error">Familyani kiriting</div>
+      </div>
+
+      <div class="field">
+        <input id="telefon" name="nomer" placeholder=" " value="+998" />
+        <label>Telefon</label>
+        <div class="error">Telefon kiriting</div>
+      </div>
+
+      <div class="field">
+        <input id="parol" name="parol" type="password" placeholder=" " />
+        <label>Parol</label>
+        <span class="pass-toggle" onclick="togglePassword()">
+          <img id="eyeIcon" src="https://cdn-icons-png.flaticon.com/512/709/709612.png" />
+        </span>
+        <div class="error">Parol kiriting</div>
+      </div>
+
+      <p class="role-label">Siz kimsiz?</p>
+      <div class="role-switch" onclick="toggleRole()">
+        <div class="role-slider" id="roleSlider"></div>
+        <span id="roleLeft" class="active">Ishchi</span>
+        <span id="roleRight">Ish beruvchi</span>
+      </div>
+
+      <button class="btn" type="submit">Davom etish</button>
+      <input type="hidden" name="turi" id="turiInput" value="ishchi" />
     </div>
+  </form>
 
-    <div class="field">
-      <input name="ism" id="ism" placeholder=" " />
-      <label>Ism</label>
-      <div class="error">Ismni kiriting</div>
-    </div>
+  <script>
+    let userRole = "ishchi";
 
-    <div class="field">
-      <input name="familiya" id="familya" placeholder=" " />
-      <label>Familya</label>
-      <div class="error">Familyani kiriting</div>
-    </div>
-
-    <div class="field">
-      <input name="nomer" id="telefon" placeholder=" " value="+998" />
-      <label>Telefon</label>
-      <div class="error">Telefon kiriting</div>
-    </div>
-
-    <div class="field">
-      <input name="parol" id="parol" type="password" placeholder=" " />
-      <label>Parol</label>
-      <span class="pass-toggle" onclick="togglePassword()">
-        <img id="eyeIcon" src="https://cdn-icons-png.flaticon.com/512/709/709612.png" />
-      </span>
-      <div class="error">Parol kiriting</div>
-    </div>
-
-    <p class="role-label">Siz kimsiz?</p>
-    <div class="role-switch" onclick="toggleRole()">
-      <div class="role-slider" id="roleSlider"></div>
-      <span id="roleLeft" class="active" onclick="setType('ishchi')">Ishchi</span>
-      <span id="roleRight" onclick="setType('ishberuvchi')">Ish beruvchi</span>
-    </div>
-
-    <button type="button" class="btn" onclick="register()">Davom etish</button>
-    <input type="hidden" name="turi" id="turiInput" value="ishchi">
-  </div>
-</form>
-
-<script>
-let userRole = "ishchi";
-
-function setType(type){
-  userRole = type;
-  document.getElementById("turiInput").value = type;
-  document.getElementById("roleLeft").classList.toggle("active", type==="ishchi");
-  document.getElementById("roleRight").classList.toggle("active", type==="ishberuvchi");
-}
-
-function toggleRole(){
-  if(userRole==="ishchi") setType("ishberuvchi");
-  else setType("ishchi");
-}
-
-function togglePassword(){
-  const input = document.getElementById("parol");
-  const icon = document.getElementById("eyeIcon");
-  if(input.type==="password"){
-    input.type="text"; icon.src="https://cdn-icons-png.flaticon.com/512/159/159604.png";
-  } else{
-    input.type="password"; icon.src="https://cdn-icons-png.flaticon.com/512/709/709612.png";
-  }
-}
-
-function register(){
-  const form = document.getElementById("regForm");
-  let ok = true;
-  document.querySelectorAll(".field").forEach(f=>{
-    const i = f.querySelector("input");
-    const e = f.querySelector(".error");
-    if(!i.value || i.value.trim()===""){
-      i.classList.add("input-error","shake");
-      e.style.display="block";
-      ok=false;
-      setTimeout(()=>i.classList.remove("shake"),350);
-    } else {
-      i.classList.remove("input-error");
-      e.style.display="none";
+    function toggleRole() {
+      const sw = document.querySelector(".role-switch");
+      const left = document.getElementById("roleLeft");
+      const right = document.getElementById("roleRight");
+      sw.classList.toggle("employer");
+      if(sw.classList.contains("employer")){
+        userRole = "ishberuvchi";
+        left.classList.remove("active");
+        right.classList.add("active");
+      }else{
+        userRole = "ishchi";
+        right.classList.remove("active");
+        left.classList.add("active");
+      }
+      document.getElementById("turiInput").value = userRole;
     }
-  });
-  if(!ok) return;
 
-  const data = {
-    ism: document.getElementById("ism").value,
-    familiya: document.getElementById("familya").value,
-    nomer: document.getElementById("telefon").value,
-    parol: document.getElementById("parol").value,
-    turi: userRole
-  };
+    function togglePassword(){
+      const input = document.getElementById("parol");
+      const icon = document.getElementById("eyeIcon");
+      if(input.type === "password"){
+        input.type = "text";
+        icon.src = "https://cdn-icons-png.flaticon.com/512/159/159604.png";
+      }else{
+        input.type = "password";
+        icon.src = "https://cdn-icons-png.flaticon.com/512/709/709612.png";
+      }
+    }
 
-  fetch('/users', {
-    method: 'POST',
-    headers: { 'Content-Type':'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(res=>res.json())
-  .then(res=>{
-    if(res.ok) alert("✅ Ro'yxatdan o'tish muvaffaqiyatli!");
-    else alert("❌ Xato: "+res.error);
-  })
-  .catch(err=>alert("❌ Xato: "+err));
-}
-</script>
+    document.getElementById("registerForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+
+      const ism = document.getElementById("ism").value.trim();
+      const familiya = document.getElementById("familya").value.trim();
+      const nomer = document.getElementById("telefon").value.trim();
+      const parol = document.getElementById("parol").value;
+
+      let ok = true;
+      document.querySelectorAll(".field").forEach(f=>{
+        const i = f.querySelector("input");
+        const e = f.querySelector(".error");
+        if(!i.value){
+          i.classList.add("input-error","shake");
+          e.style.display = "block";
+          ok = false;
+          setTimeout(()=>i.classList.remove("shake"),350);
+        }else{
+          i.classList.remove("input-error");
+          e.style.display = "none";
+        }
+      });
+      if(!ok) return;
+
+      try{
+        const res = await fetch("/users",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body: JSON.stringify({ism,familiya,nomer,parol,turi:userRole})
+        });
+        const data = await res.json();
+        if(data.ok){
+          alert("✅ Ro'yxatdan o'tish muvaffaqiyatli!");
+        }else{
+          alert("❌ Xatolik: "+(data.error||"Noma'lum"));
+        }
+      }catch(err){
+        alert("❌ Server bilan bog'lanishda xatolik!");
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>
