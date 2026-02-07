@@ -47,7 +47,7 @@ app.post('/users', async (req, res) => {
       };
 
       const saved = await insertUser(user);
-      res.json({ ok: true, user: saved });
+      res.sendFile(path.join(__dirname, 'frontend', 'success.html'));
    } catch (e) {
       res.status(500).json({ ok: false, error: e.message });
    }
@@ -69,3 +69,4 @@ await initDB();
 app.listen(PORT, () => {
    console.log(`🚀 Server ishga tushdi: ${PORT}`);
 });
+
