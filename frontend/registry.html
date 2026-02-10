@@ -25,6 +25,23 @@
         position: relative;
         overflow: hidden;
       }
+     .home-btn{
+       display: block;
+       width: 70px;
+       height: 70px;
+       background-image: url("images/home.png");
+       background-size: 100% 100%;
+       border-radius: 50%;
+       position: absolute;
+       left: 20px;
+       top: 20px;
+       transition: 500ms ease-in;
+       transform: scale(1);
+     }
+
+     .home-btn:hover{
+      transform: scale(1.2);
+     }
       @keyframes bg {
         0% {
           background-position: 0% 50%;
@@ -509,6 +526,7 @@
   </head>
 
   <body>
+    <a class="home-btn" href="index.html"></a>
     <form action="https://yangiyer-1.onrender.com/users" method="post">
     <div class="container role-animate">
       <div class="header">
