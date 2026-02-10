@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="uz">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Ishchilar</title>
+      <link
+         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      />
+      <style>
+         *{
+           margin:0;
+           padding:0;
+           box-sizing:border-box;
+           font-family:'Inter',sans-serif;
+         }
+         body{
+           min-height:100vh;
+           background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+           color:#fff;
+           display:flex;
+           flex-direction:column;
+         }
+         .home-btn{
+           display: block;
+           width: 70px;
+           height: 70px;
+           background-image: url(home.png);
+           background-size: 100% 100%;
+           border-radius: 50%;
+           position: absolute;
+           left: 20px;
+           top: 20px;
+           transition: 500ms ease-in;
+           transform: scale(1);
+         }
+
+         .home-btn:hover{
+          transform: scale(1.2);
+         }
+         header{
+           text-align:center;
+           padding:20px;
+           display:flex;
+           justify-content:center;
+           align-items:center;
+           gap:20px;
+         }
+         header h1{
+           font-size:2.5rem;
+           font-weight:900;
+           color:#ff4e50;
+         }
+         .video-gallery{
+           flex:1;
+           display:grid;
+           grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+           gap:20px;
+           padding:20px;
+         }
+         .video-card{
+           position:relative;
+           border-radius:15px;
+           overflow:hidden;
+           box-shadow:0 10px 40px rgba(0,0,0,.6);
+         }
+         .video-card video{
+           width:100%;
+           height:100%;
+           object-fit:cover;
+           transition:.4s;
+         }
+         .video-card:hover video{
+           transform:scale(1.05);
+           filter:brightness(1.1);
+         }
+         .video-card h3{
+           position:absolute;
+           bottom:0;
+           width:100%;
+           padding:10px;
+           text-align:center;
+           background:rgba(0,0,0,.4);
+           color:#ff4e50;
+           font-weight:900;
+         }
+         .footer{
+           background:rgba(0,0,0,.5);
+           backdrop-filter:blur(10px);
+           padding-top:30px;
+           color:#fff;
+         }
+         .footer-container{
+           display:grid;
+           grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+           gap:20px;
+           padding:20px;
+         }
+         .footer-box h2,
+         .footer-box h3{
+           color:#ff4e50;
+           margin-bottom:10px;
+         }
+         .footer-box p{
+           font-size:14px;
+           margin:5px 0;
+           opacity:.9;
+         }
+         .footer-box i{
+           margin-right:8px;
+           color:#ff4e50;
+         }
+         .socials{
+           display:flex;
+           gap:15px;
+           margin-top:10px;
+         }
+         .socials a{
+           width:40px;
+           height:40px;
+           border-radius:50%;
+           display:flex;
+           align-items:center;
+           justify-content:center;
+           color:#fff;
+           font-size:18px;
+           transition:.3s;
+         }
+         .tg{ background:#229ED9; }
+         .ig{ background:#E1306C; }
+         .fb{ background:#1877F2; }
+         .socials a:hover{
+           transform:translateY(-5px) scale(1.1);
+           box-shadow:0 5px 20px rgba(0,0,0,.5);
+         }
+         .map{
+           width:100%;
+           height:200px;
+           margin-top:20px;
+           border-radius:15px;
+           overflow:hidden;
+         }
+         .map iframe{
+           width:100%;
+           height:100%;
+           border:none;
+           filter:grayscale(20%);
+           transition:all .5s ease;
+         }
+         .map iframe:hover{
+           filter:grayscale(0%);
+           transform:scale(1.02);
+         }
+         .copy{
+           text-align:center;
+           padding:15px;
+           font-size:14px;
+           opacity:.7;
+         }
+      </style>
+   </head>
+   <body>
+      <a class="home-btn" href="index.html"></a>
+      <header>
+         <img
+            src="./images/photo_2026-02-03_17-25-03.jpg"
+            style="width:100px;border-radius:50px;"
+         />
+         <h1>Kunlikish.uz</h1>
+      </header>
+      <section class="video-gallery">
+         <div class="video-card">
+            <video
+               src="./videos/7715979-uhd_3840_2160_30fps.mp4"
+               muted
+               loop
+               autoplay
+               playsinline
+            ></video>
+            <h3>Ishchilar Ishlayapti</h3>
+         </div>
+         <div class="video-card">
+            <video src="./videos/block.mp4" muted loop autoplay playsinline></video>
+            <h3>Ishchilar Ishlayapti</h3>
+         </div>
+         <div class="video-card">
+            <video
+               src="./videos/14274277_2160_3840_29fps.mp4"
+               muted
+               loop
+               autoplay
+               playsinline
+            ></video>
+            <h3>Ishchilar Ishlayapti</h3>
+         </div>
+         <div class="video-card">
+            <video
+               src="./videos/13530550-hd_1920_1080_30fps.mp4"
+               muted
+               loop
+               autoplay
+               playsinline
+            ></video>
+            <h3>Ishchilar Ishlayapti</h3>
+         </div>
+         <div class="video-card">
+            <video
+               src="./videos/10041399-hd_1080_1920_24fps.mp4"
+               muted
+               loop
+               autoplay
+               playsinline
+            ></video>
+            <h3>Ishchilar Ishlayapti</h3>
+         </div>
+      </section>
+      <footer class="footer">
+         <div class="footer-container">
+            <div class="footer-box">
+               <h2>Ishchilar</h2>
+               <p>Sifatli ishlar</p>
+            </div>
+            <div class="footer-box">
+               <h3>Aloqa</h3>
+               <p><i class="fas fa-phone"></i> +998 99 019 07 88</p>
+               <p><i class="fas fa-location-dot"></i> Yangiyer, O‘zbekiston</p>
+            </div>
+            <div class="footer-box">
+               <h3>Ijtimoiy tarmoqlar</h3>
+               <div class="socials">
+                  <a
+                     href="https://t.me/bobobekovdilshod"
+                     class="tg"
+                     target="@bobobekovdilshod"
+                     ><i class="fab fa-telegram"></i
+                  ></a>
+                  <a href="#" class="ig" target="_blank"
+                     ><i class="fab fa-instagram"></i
+                  ></a>
+                  <a href="#" class="fb" target="_blank"
+                     ><i class="fab fa-facebook-f"></i
+                  ></a>
+               </div>
+            </div>
+         </div>
+      </footer>
+   </body>
+</html>
