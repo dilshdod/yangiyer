@@ -1,156 +1,729 @@
 <!DOCTYPE html>
-<html lang="uz">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ro'yxatdan o'tish</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* --- Dizayn va animatsiyalarni o'zgartirmadik --- */
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Inter;}
-    body{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(120deg,#0f172a,#052e16,#022c22);background-size:400% 400%;animation:bg 10s infinite;position:relative;overflow:hidden;}
-    @keyframes bg{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-    .container{width:100%;max-width:420px;background:rgba(255,255,255,0.06);backdrop-filter:blur(24px);padding:32px;border-radius:26px;border:1px solid rgba(255,255,255,0.2);box-shadow:0 30px 70px rgba(0,0,0,0.5);animation:card 0.8s cubic-bezier(0.22,1,0.36,1);position:relative;z-index:1;}
-    @keyframes card{from{opacity:0;transform:translateY(40px) scale(0.95);}to{opacity:1;transform:none;}}
-    .header{text-align:center;margin-bottom:26px;}
-    .avatar{width:86px;height:86px;margin:0 auto 14px;border-radius:50%;position:relative;}
-    .avatar::before{content:"";position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(#22c55e,#06b6d4,#22c55e);animation:spin 4s linear infinite;}
-    @keyframes spin{to{transform:rotate(360deg);}}
-    .avatar img{width:100%;height:100%;border-radius:50%;position:relative;z-index:1;background:#0f172a;padding:10px;}
-    .header h2{font-size:26px;font-weight:700;background:linear-gradient(135deg,#22c55e,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .header p{color:#ccfbf1;font-size:14px;margin-top:6px;}
-    .field{position:relative;margin-bottom:20px;}
-    .field input{width:100%;padding:18px 14px;border-radius:14px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:#fff;outline:none;position:relative;z-index:2;}
-    .field label{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#a7f3d0;pointer-events:none;transition:0.3s;background:transparent;z-index:2;}
-    .field input:focus + label,.field input:not(:placeholder-shown) + label{top:-8px;font-size:12px;color:#22c55e;background:#022c22;padding:0 6px;}
-    .field input:focus{border-color:#22c55e;box-shadow:0 0 12px rgba(34,197,94,0.6);}
-    .error{font-size:12px;color:#fb7185;margin-top:4px;display:none;}
-    .input-error{border-color:#fb7185 !important;}
-    .shake{animation:shake 0.35s;}
-    @keyframes shake{0%{transform:translateX(0);}25%{transform:translateX(-4px);}50%{transform:translateX(4px);}75%{transform:translateX(-4px);}100%{transform:translateX(0);}}
-    .btn{width:100%;padding:16px;border-radius:20px;border:none;font-size:16px;font-weight:600;background:linear-gradient(135deg,#22c55e,#06b6d4);color:#022c22;cursor:pointer;position:relative;overflow:hidden;}
-    .btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);transform:translateX(-100%);}
-    .btn:hover::after{animation:shine 1.2s;}
-    @keyframes shine{to{transform:translateX(100%);}}
-    .pass-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;opacity:0.8;transition:0.3s;}
-    .pass-toggle img{width:22px;filter:grayscale(100%);transition:0.3s;}
-    .pass-toggle:hover{transform:translateY(-50%) scale(1.2);opacity:1;}
-    .role-switch{position:relative;width:260px;height:56px;margin:0 auto 26px;background:rgba(255,255,255,0.08);border-radius:40px;display:flex;align-items:center;justify-content:space-between;padding:6px;cursor:pointer;overflow:hidden;backdrop-filter:blur(12px);box-shadow:inset 0 0 20px rgba(255,255,255,0.08);}
-    .role-switch span{width:50%;text-align:center;z-index:2;font-weight:600;color:#94fdf3;transition:0.4s;}
-    .role-switch span.active{color:#022c22;}
-    .role-slider{position:absolute;width:50%;height:44px;left:6px;background:linear-gradient(135deg,#22c55e,#06b6d4);border-radius:34px;transition:0.45s cubic-bezier(.68,-0.55,.27,1.55);box-shadow:0 0 25px rgba(34,197,94,0.6);}
-    .role-switch.employer .role-slider{left:calc(50% - 6px);}
-  </style>
-</head>
-<body>
-<form action="/users" method="post">
-  <div class="field">
-    <input id="ism" name="ism" placeholder=" " />
-    <label>Ism</label>
-    <div class="error">Ismni kiriting</div>
-  </div>
+<!-- saved from url=(0042)https://yangiyer-1.onrender.com/index.html -->
+<html lang="uz"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan o'tish</title>
+    <link href="./Ro&#39;yxatdan o&#39;tish_files/css2" rel="stylesheet">
 
-  <div class="field">
-    <input id="familya" name="familiya" placeholder=" " />
-    <label>Familya</label>
-    <div class="error">Familyani kiriting</div>
-  </div>
-
-  <div class="field">
-    <input id="telefon" name="nomer" placeholder=" " value="+998" />
-    <label>Telefon</label>
-    <div class="error">Telefon kiriting</div>
-  </div>
-
-  <div class="field">
-    <input id="parol" name="parol" type="password" placeholder=" " />
-    <label>Parol</label>
-    <span class="pass-toggle" onclick="togglePassword()">
-      <img id="eyeIcon" src="https://cdn-icons-png.flaticon.com/512/709/709612.png"/>
-    </span>
-    <div class="error">Parol kiriting</div>
-  </div>
-
-  <input type="hidden" name="turi" id="turiInput" value="ishchi" />
-
-  <button type="submit" class="btn">Davom etish</button>
-</form>
-
-
-  <script>
-    let userRole = "ishchi";
-
-    function toggleRole() {
-      const sw = document.querySelector(".role-switch");
-      const left = document.getElementById("roleLeft");
-      const right = document.getElementById("roleRight");
-      sw.classList.toggle("employer");
-      if(sw.classList.contains("employer")){
-        userRole = "ishberuvchi";
-        left.classList.remove("active");
-        right.classList.add("active");
-      }else{
-        userRole = "ishchi";
-        right.classList.remove("active");
-        left.classList.add("active");
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Inter;
       }
-      document.getElementById("turiInput").value = userRole;
-    }
 
-    function togglePassword(){
-      const input = document.getElementById("parol");
-      const icon = document.getElementById("eyeIcon");
-      if(input.type === "password"){
-        input.type = "text";
-        icon.src = "https://cdn-icons-png.flaticon.com/512/159/159604.png";
-      }else{
-        input.type = "password";
-        icon.src = "https://cdn-icons-png.flaticon.com/512/709/709612.png";
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(120deg, #0f172a, #052e16, #022c22);
+        background-size: 400% 400%;
+        animation: bg 10s infinite;
+        position: relative;
+        overflow: hidden;
       }
-    }
-
-    document.getElementById("registerForm").addEventListener("submit", async function(e){
-      e.preventDefault();
-
-      const ism = document.getElementById("ism").value.trim();
-      const familiya = document.getElementById("familya").value.trim();
-      const nomer = document.getElementById("telefon").value.trim();
-      const parol = document.getElementById("parol").value;
-
-      let ok = true;
-      document.querySelectorAll(".field").forEach(f=>{
-        const i = f.querySelector("input");
-        const e = f.querySelector(".error");
-        if(!i.value){
-          i.classList.add("input-error","shake");
-          e.style.display = "block";
-          ok = false;
-          setTimeout(()=>i.classList.remove("shake"),350);
-        }else{
-          i.classList.remove("input-error");
-          e.style.display = "none";
+      @keyframes bg {
+        0% {
+          background-position: 0% 50%;
         }
-      });
-      if(!ok) return;
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-      try{
-        const res = await fetch("/users",{
-          method:"POST",
-          headers:{"Content-Type":"application/json"},
-          body: JSON.stringify({ism,familiya,nomer,parol,turi:userRole})
+      /* 📦 Card */
+      .container {
+        width: 100%;
+        max-width: 420px;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(24px);
+        padding: 32px;
+        border-radius: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+        animation: card 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        position: relative;
+        z-index: 1;
+      }
+      @keyframes card {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 26px;
+      }
+      .avatar {
+        width: 86px;
+        height: 86px;
+        margin: 0 auto 14px;
+        border-radius: 50%;
+        position: relative;
+      }
+      .avatar::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: conic-gradient(#22c55e, #06b6d4, #22c55e);
+        animation: spin 4s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+        background: #0f172a;
+        padding: 10px;
+      }
+      .header h2 {
+        font-size: 26px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #22c55e, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .header p {
+        color: #ccfbf1;
+        font-size: 14px;
+        margin-top: 6px;
+      }
+
+      .field {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      .field input {
+        width: 100%;
+        padding: 18px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        outline: none;
+        position: relative;
+        z-index: 2;
+      }
+      .field label {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #a7f3d0;
+        pointer-events: none;
+        transition: 0.3s;
+        background: transparent;
+        z-index: 2;
+      }
+      .field input:focus + label,
+      .field input:not(:placeholder-shown) + label {
+        top: -8px;
+        font-size: 12px;
+        color: #22c55e;
+        background: #022c22;
+        padding: 0 6px;
+      }
+      .field input:focus {
+        border-color: #22c55e;
+        box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+      }
+
+      .error {
+        font-size: 12px;
+        color: #fb7185;
+        margin-top: 4px;
+        display: none;
+      }
+      .input-error {
+        border-color: #fb7185 !important;
+      }
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-4px);
+        }
+        50% {
+          transform: translateX(4px);
+        }
+        75% {
+          transform: translateX(-4px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      .shake {
+        animation: shake 0.35s;
+      }
+      .container::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 28px;
+  background: linear-gradient(120deg,#22c55e,#06b6d4,#22c55e);
+  opacity: 0.15;
+  filter: blur(30px);
+  z-index: -1;
+  animation: pulse 6s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 0.12; }
+  50% { opacity: 0.35; }
+}
+.role-switch {
+  position: relative;
+  isolation: isolate;
+}
+
+.role-switch::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 42px;
+  background: conic-gradient(
+    from 0deg,
+    #22c55e,
+    #06b6d4,
+    #22c55e
+  );
+  opacity: 0;
+  filter: blur(10px);
+  z-index: -1;
+  transition: 0.4s;
+}
+
+.role-switch:hover::before {
+  opacity: 0.6;
+  animation: rotateGlow 3s linear infinite;
+}
+
+@keyframes rotateGlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.role-switch:active {
+  animation: spring 0.35s;
+}
+
+@keyframes spring {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.92); }
+  70%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.role-slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: translateX(-120%);
+}
+
+.role-switch:hover .role-slider::after {
+  animation: slideLight 1.2s;
+}
+
+@keyframes slideLight {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+
+      .role-label {
+        text-align: center;
+        color: #ecfeff;
+        margin: 12px 0;
+      }
+      .role-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+      .role-btn {
+        padding: 18px;
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: 0.35s;
+      }
+      .role-btn img {
+        width: 46px;
+      }
+      .role-btn:hover {
+        transform: translateY(-6px);
+      }
+      .role-btn.active {
+        border-color: #22c55e;
+        background: rgba(34, 197, 94, 0.25);
+        box-shadow: 0 12px 30px rgba(34, 197, 94, 0.45);
+      }
+
+      .btn {
+        width: 100%;
+        padding: 16px;
+        border-radius: 20px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #22c55e, #06b6d4);
+        color: #022c22;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transform: translateX(-100%);
+      }
+      .btn:hover::after {
+        animation: shine 1.2s;
+      }
+      @keyframes shine {
+        to {
+          transform: translateX(100%);
+        }
+      }
+
+      .pass-toggle {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        opacity: 0.8;
+        transition: 0.3s;
+      }
+      .container.role-animate {
+  animation: rolePulse 0.7s ease-out;
+}
+/* Parol blur + slide animatsiyasi */
+#parol {
+  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: blur(4px);
+}
+
+#parol.show {
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* Slide effect har safar toggle bo‘lganda */
+#parol.slide {
+  transform: translateY(-4px);
+}
+
+/* Eye blink animatsiyasi */
+.blink {
+  animation: blinkEye 0.4s ease-in-out;
+}
+
+@keyframes blinkEye {
+  0%,100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.2); }
+}
+
+
+@keyframes rolePulse {
+  0% {
+    box-shadow: 0 0 0 rgba(34,197,94,0);
+  }
+  40% {
+    box-shadow: 0 0 60px rgba(34,197,94,0.6);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(34,197,94,0.3);
+  }
+}
+
+      .pass-toggle:hover {
+        transform: translateY(-50%) scale(1.2);
+        opacity: 1;
+      }
+      .pass-toggle img {
+        width: 22px;
+        filter: grayscale(100%);
+        transition: 0.3s;
+      }
+      .blink {
+        animation: blinkEye 0.4s ease-in-out;
+      }
+      @keyframes blinkEye {
+        0%,
+        100% {
+          transform: scaleY(1);
+        }
+        50% {
+          transform: scaleY(0.2);
+        }
+      }
+
+      .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+      .bg-animation span {
+        position: absolute;
+        white-space: nowrap;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.15);
+        animation-name: floatText;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        opacity: 0;
+      }
+      @keyframes floatText {
+        0% {
+          transform: translateX(0) translateY(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        50% {
+          transform: translateX(200px) translateY(-100px) rotate(360deg);
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(400px) translateY(-200px) rotate(720deg);
+          opacity: 0;
+        }
+      }
+      .eye-bg {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .eye-bg img {
+        width: 100%;
+        height: 100%;
+        filter: grayscale(100%);
+        transition: all 0.3s ease;
+      }
+      .eye-bg.show {
+        opacity: 1;
+      }
+      .role-switch {
+  position: relative;
+  width: 260px;
+  height: 56px;
+  margin: 0 auto 26px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.08);
+}
+
+.role-switch span {
+  width: 50%;
+  text-align: center;
+  z-index: 2;
+  font-weight: 600;
+  color: #94fdf3;
+  transition: 0.4s;
+}
+
+.role-switch span.active {
+  color: #022c22;
+}
+
+.role-slider {
+  position: absolute;
+  width: 50%;
+  height: 44px;
+  left: 6px;
+  background: linear-gradient(135deg,#22c55e,#06b6d4);
+  border-radius: 34px;
+  transition: 0.45s cubic-bezier(.68,-0.55,.27,1.55);
+  box-shadow: 0 0 25px rgba(34,197,94,0.6);
+}
+
+.role-switch.employer .role-slider {
+  left: calc(50% - 6px);
+}
+
+    </style>
+  </head>
+
+  <body>
+    <form action="https://yangiyer-1.onrender.com/users" method="post">
+    <div class="container role-animate">
+      <div class="header">
+        <div class="avatar">
+          <img src="./Ro&#39;yxatdan o&#39;tish_files/4140037.png">
+        </div>
+        <h2>Ro'yxatdan o'ting</h2>
+      </div>
+
+      <div class="field">
+        <input name="ism" id="ism" placeholder=" ">
+        <label>Ism</label>
+        <div class="error">Ismni kiriting</div>
+      </div>
+
+      <div class="field">
+        <input name="familiya" id="familya" placeholder=" ">
+        <label>Familya</label>
+        <div class="error">Familyani kiriting</div>
+      </div>
+
+      <div class="field">
+        <input name="nomer" id="telefon" placeholder=" " value="+998">
+        <label>Telefon</label>
+        <div class="error">Telefon kiriting</div>
+      </div>
+
+      <div class="field">
+        <input name="parol" id="parol" type="password" placeholder=" ">
+        <label>Parol</label>
+
+        <span class="pass-toggle" onclick="togglePassword()">
+          <img id="eyeIcon" src="./Ro&#39;yxatdan o&#39;tish_files/709612.png">
+        </span>
+
+        <div class="error">Parol kiriting</div>
+      </div>
+
+      <p class="role-label">Siz kimsiz?</p>
+
+      <div class="role-switch" onclick="toggleRole()">
+        <div class="role-slider" id="roleSlider"></div>
+        <span id="roleLeft" class="active" onclick="setType(&#39;ishchi&#39;)">Ishchi</span>
+        <span id="roleRight" onclick="setType(&#39;ishberuvchi&#39;)">Ish beruvchi</span>
+      </div>
+
+      <button class="btn" type="submit" onclick="register()">Davom etish</button>
+    </div>
+
+    <div class="bg-animation" id="bgAnim"></div>
+    <div class="eye-bg" id="eyeBg">
+      <img id="eyeBgImg" src="./Ro&#39;yxatdan o&#39;tish_files/709612.png">
+    </div>
+      <input type="hidden" name="turi" id="turiInput" value="ishchi">
+    </form>
+
+    <script>
+      let role = null;
+      function selectRole(r, el) {
+        role = r;
+        document
+          .querySelectorAll(".role-btn")
+          .forEach((b) => b.classList.remove("active"));
+        el.classList.add("active");
+      }
+
+      function register() {
+        let ok = true;
+        document.querySelectorAll(".field").forEach((f) => {
+          const i = f.querySelector("input");
+          const e = f.querySelector(".error");
+          if (!i.value) {
+            i.classList.add("input-error", "shake");
+            e.style.display = "block";
+            ok = false;
+            setTimeout(() => i.classList.remove("shake"), 350);
+          } else {
+            i.classList.remove("input-error");
+            e.style.display = "none";
+          }
         });
-        const data = await res.json();
-        if(data.ok){
-          alert("✅ Ro'yxatdan o'tish muvaffaqiyatli!");
-        }else{
-          alert("❌ Xatolik: "+(data.error||"Noma'lum"));
-        }
-      }catch(err){
-        alert("❌ Server bilan bog'lanishda xatolik!");
-        console.error(err);
+        if (!role) ok = false;
+        if (ok) alert("✅ Tayyor!");
       }
-    });
-  </script>
-</body>
-</html>
 
+      const phoneInput = document.getElementById("telefon");
+      phoneInput.addEventListener("focus", () => {
+        if (phoneInput.value === "") phoneInput.value = "+998";
+      });
+      phoneInput.addEventListener("blur", () => {
+        if (phoneInput.value === "+998") phoneInput.value = "";
+      });
+
+      // 🔮 Input background animations
+      const bgContainer = document.getElementById("bgAnim");
+      const inputs = document.querySelectorAll(".field input");
+      const eyeBg = document.getElementById("eyeBg");
+      const eyeBgImg = document.getElementById("eyeBgImg");
+
+      function clearBg() {
+        bgContainer.innerHTML = "";
+        eyeBg.classList.remove("show");
+      }
+
+      inputs.forEach((input) => {
+        input.addEventListener("focus", () => {
+          clearBg();
+          if (input.id === "parol") {
+            eyeBg.classList.add("show");
+            eyeBgImg.src =
+              input.type === "password"
+                ? "https://cdn-icons-png.flaticon.com/512/709/709612.png"
+                : "https://cdn-icons-png.flaticon.com/512/159/159604.png";
+          } else {
+            for (let i = 0; i < 15; i++) {
+              const span = document.createElement("span");
+              span.textContent = input.value || input.placeholder || "Test";
+              span.style.top = Math.random() * 80 + "vh";
+              span.style.left = Math.random() * 80 + "vw";
+              span.style.fontSize = 12 + Math.random() * 24 + "px";
+              span.style.color = `hsla(${Math.random() * 360},70%,80%,0.2)`;
+              span.style.animationDuration = 3 + Math.random() * 5 + "s";
+              span.style.fontFamily = [
+                "Arial",
+                "Inter",
+                "Verdana",
+                "Courier New",
+              ][Math.floor(Math.random() * 3)];
+              bgContainer.appendChild(span);
+            }
+          }
+        });
+
+        input.addEventListener("blur", () => {
+          clearBg();
+        });
+      });
+
+      // 👁️ Password toggle
+      function togglePassword() {
+        const input = document.getElementById("parol");
+        const icon = document.getElementById("eyeIcon");
+
+        icon.classList.add("blink");
+        setTimeout(() => icon.classList.remove("blink"), 400);
+
+        if (input.type === "password") {
+          input.type = "text";
+          icon.src = "https://cdn-icons-png.flaticon.com/512/159/159604.png";
+          eyeBgImg.src =
+            "https://cdn-icons-png.flaticon.com/512/159/159604.png";
+        } else {
+          input.type = "password";
+          icon.src = "https://cdn-icons-png.flaticon.com/512/709/709612.png";
+          eyeBgImg.src =
+            "https://cdn-icons-png.flaticon.com/512/709/709612.png";
+        }
+      }
+      let userRole = "ishchi"; // 👈 backend shu o‘zgaruvchini o‘qiydi
+
+function toggleRole() {
+  const sw = document.querySelector(".role-switch");
+  const left = document.getElementById("roleLeft");
+  const right = document.getElementById("roleRight");
+
+  sw.classList.toggle("employer");
+
+  if (sw.classList.contains("employer")) {
+    userRole = "ishberuvchi";
+    left.classList.remove("active");
+    right.classList.add("active");
+  } else {
+    userRole = "ishchi";
+    right.classList.remove("active");
+    left.classList.add("active");
+  }
+
+  console.log("Tanlangan role:", userRole);
+}
+const card = document.querySelector(".container");
+card.classList.remove("role-animate");
+void card.offsetWidth;
+card.classList.add("role-animate");
+function togglePassword() {
+  const input = document.getElementById("parol");
+  const icon = document.getElementById("eyeIcon");
+
+  // Eye blink animatsiyasi
+  icon.classList.add("blink");
+  setTimeout(() => icon.classList.remove("blink"), 400);
+
+  // Parol blur + slide effekt
+  input.classList.add("slide"); 
+  setTimeout(() => input.classList.remove("slide"), 150);
+
+  if (input.type === "password") {
+    input.type = "text";
+    input.classList.add("show"); // blur ochiladi
+    icon.src = "https://cdn-icons-png.flaticon.com/512/159/159604.png";
+    eyeBgImg.src = "https://cdn-icons-png.flaticon.com/512/159/159604.png";
+  } else {
+    input.type = "password";
+    input.classList.remove("show"); // blur qaytadi
+    icon.src = "https://cdn-icons-png.flaticon.com/512/709/709612.png";
+    eyeBgImg.src = "https://cdn-icons-png.flaticon.com/512/709/709612.png";
+  }
+}
+ function setType(type) {
+  
+    document.getElementById("turiInput").value = type; 
+    console.log( document.getElementById("turiInput").value)
+  }
+
+    </script>
+  
+
+
+</body></html>
