@@ -1,1 +1,433 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxfiylik Siyosati | Kunlik Ish</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#0b0f19;
+    color:#e5e7eb;
+    overflow-x:hidden;
+    transition:0.4s;
+}
+
+body.cyberpunk{
+    --accent:#00ffff;
+    --secondary:#ff00ff;
+}
+
+body.corporate{
+    --accent:#3b82f6;
+    --secondary:#1f2937;
+}
+
+body.apple{
+    --accent:#ffffff;
+    --secondary:#1c1c1e;
+}
+
+body.luxury{
+    --accent:#d4af37;
+    --secondary:#111;
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+nav{
+    position:fixed;
+    width:100%;
+    padding:18px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(15px);
+    background:rgba(0,0,0,0.6);
+    z-index:1000;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-img{
+    width:48px;
+    height:48px;
+    object-fit:cover;
+    border-radius:14px;
+    box-shadow:0 0 20px var(--accent);
+    transition:0.4s;
+}
+
+.logo-img:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 35px var(--accent);
+}
+
+nav h1{
+    font-size:26px;
+    font-weight:800;
+    color:var(--accent);
+    letter-spacing:1px;
+}
+
+.theme-buttons button{
+    margin-left:10px;
+    padding:8px 16px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:600;
+    background:var(--secondary);
+    color:white;
+    transition:0.3s;
+}
+
+.theme-buttons button:hover{
+    transform:scale(1.05);
+}
+
+header{
+    padding-top:160px;
+    padding-bottom:100px;
+    text-align:center;
+}
+
+header h2{
+    font-size:52px;
+    font-weight:900;
+    margin-bottom:20px;
+    color:var(--accent);
+}
+
+header p{
+    max-width:750px;
+    margin:auto;
+    font-size:18px;
+    opacity:0.85;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+    padding-bottom:120px;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    padding:50px;
+    border-radius:25px;
+    margin-bottom:60px;
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.6s;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card h3{
+    font-size:28px;
+    margin-bottom:20px;
+    color:var(--accent);
+}
+
+.card p{
+    margin-bottom:15px;
+    line-height:1.7;
+    font-size:16px;
+}
+
+.stats{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    flex:1;
+    min-width:250px;
+    background:rgba(255,255,255,0.08);
+    padding:30px;
+    border-radius:18px;
+    text-align:center;
+}
+
+.stat h4{
+    font-size:42px;
+    margin-bottom:10px;
+    color:var(--accent);
+}
+
+.accordion-item{
+    margin-bottom:15px;
+}
+
+.accordion-header{
+    padding:18px;
+    background:var(--secondary);
+    border-radius:15px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.accordion-content{
+    max-height:0;
+    overflow:hidden;
+    transition:0.4s;
+    padding:0 15px;
+}
+
+.accordion-content p{
+    padding:15px 0;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    background:#000;
+    font-size:14px;
+    opacity:0.7;
+}
+
+@media(max-width:768px){
+    nav{
+        padding:15px 20px;
+        flex-direction:column;
+        gap:15px;
+    }
+    header h2{
+        font-size:32px;
+    }
+    .card{
+        padding:30px;
+    }
+}
+
+</style>
+</head>
+
+<body class="cyberpunk">
+
+<canvas id="particles"></canvas>
+
+<nav>
+    <div class="nav-left">
+        <img src="photo_2026-02-03_17-25-03.jpg" alt="Kunlik Ish Logo" class="logo-img">
+        <h1>Kunlik Ish</h1>
+    </div>
+
+    <div class="theme-buttons">
+       
+        <button onclick="setTheme('luxury')">💎 Styleni o'zgartiring</button>
+    </div>
+</nav>
+
+<header>
+    <h2>Maxfiylik Siyosati</h2>
+    <p>Kunlik Ish platformasi foydalanuvchilarining shaxsiy ma'lumotlarini xalqaro xavfsizlik standartlari asosida himoya qiladi.</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h3>1. Ma'lumotlarni yig‘ish</h3>
+<p>Biz foydalanuvchilardan ism, familiya, telefon raqami, elektron pochta manzili, <br>
+   rezyume ma'lumotlari hamda texnik ma'lumotlarni yig‘amiz.</p>
+<p>Barcha ma'lumotlar shifrlangan serverlarda saqlanadi va uchinchi shaxslarga sotilmaydi.</p>
+</div>
+
+<div class="card">
+<h3>2. Ma'lumotlardan foydalanish</h3>
+<p>1. Ma’lumotlardan foydalanish maqsadi
+
+    Biz foydalanuvchilardan olingan ma’lumotlardan quyidagi maqsadlarda foydalanamiz: <br>
+    
+    Foydalanuvchini ro‘yxatdan o‘tkazish va shaxsini tasdiqlash  <br>
+     
+    Ish beruvchilar va ish izlovchilar o‘rtasida aloqa o‘rnatish <br>
+    
+    Buyurtmalar va ish takliflarini joylashtirish hamda boshqarish <br>
+    
+    Xavfsizlikni ta’minlash va firibgarlikning oldini olish <br>
+    
+    Texnik qo‘llab-quvvatlash xizmatlarini ko‘rsatish <br>
+    
+    Qonunchilik talablariga rioya qilish </p>
+</div>
+
+<div class="card">
+<h3>3. Statistik Ko‘rsatkichlar</h3>
+<div class="stats">
+<div class="stat"><h4 class="counter" data-target="100">0</h4><p>% Shifrlangan</p></div>
+<div class="stat"><h4 class="counter" data-target="24">0</h4><p>/7 Monitoring</p></div>
+<div class="stat"><h4 class="counter" data-target="0">0</h4><p>% Ma'lumot sotilishi</p></div>
+</div>
+</div>
+
+<div class="card">
+<h3>4. Ko‘p beriladigan savollar</h3>
+
+<div class="accordion-item">
+<div class="accordion-header">Ma'lumotlarim xavfsizmi?</div>
+<div class="accordion-content"><p>Ha, barcha ma'lumotlar zamonaviy xavfsizlik protokollari bilan himoyalangan.</p></div>
+</div>
+
+<div class="accordion-item">
+<div class="accordion-header">Ma'lumotni o‘chira olamanmi?</div>
+<div class="accordion-content"><p>Ha, Siz o'z ma'lumotlaringizni o'chirib tahrirlashingiz mumkin.</p></div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Kunlik Ish | Barcha huquqlar himoyalangan
+</footer>
+
+<script>
+
+function setTheme(theme){
+    document.body.className = theme;
+}
+
+const cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
+    cards.forEach(card=>{
+        if(card.getBoundingClientRect().top<window.innerHeight-100){
+            card.classList.add("show");
+        }
+    });
+});
+
+const counters=document.querySelectorAll(".counter");
+counters.forEach(counter=>{
+    const update=()=>{
+        const target=+counter.getAttribute("data-target");
+        const count=+counter.innerText;
+        const inc=target/100;
+        if(count<target){
+            counter.innerText=Math.ceil(count+inc);
+            setTimeout(update,20);
+        }else{
+            counter.innerText=target;
+        }
+    };
+    update();
+});
+
+document.querySelectorAll(".accordion-header").forEach(header=>{
+    header.addEventListener("click",()=>{
+        const content=header.nextElementSibling;
+        content.style.maxHeight=content.style.maxHeight?null:content.scrollHeight+"px";
+    });
+});
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particlesArray=[];
+const numberOfParticles=100;
+
+class Particle{
+    constructor(){
+        this.x=Math.random()*canvas.width;
+        this.y=Math.random()*canvas.height;
+        this.size=Math.random()*2+1;
+        this.speedX=(Math.random()-0.5)*0.3;
+        this.speedY=(Math.random()-0.5)*0.3;
+    }
+
+    update(){
+        this.x+=this.speedX;
+        this.y+=this.speedY;
+        if(this.x<0||this.x>canvas.width) this.speedX*=-1;
+        if(this.y<0||this.y>canvas.height) this.speedY*=-1;
+    }
+
+    draw(){
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        ctx.fillStyle="rgba(255,255,255,0.08)";
+        ctx.fill();
+    }
+}
+
+function init(){
+    particlesArray=[];
+    for(let i=0;i<numberOfParticles;i++){
+        particlesArray.push(new Particle());
+    }
+}
+
+function connect(){
+    for(let a=0;a<particlesArray.length;a++){
+        for(let b=a;b<particlesArray.length;b++){
+            let dx=particlesArray[a].x-particlesArray[b].x;
+            let dy=particlesArray[a].y-particlesArray[b].y;
+            let distance=Math.sqrt(dx*dx+dy*dy);
+            if(distance<100){
+                ctx.strokeStyle="rgba(255,255,255,0.05)";
+                ctx.lineWidth=1;
+                ctx.beginPath();
+                ctx.moveTo(particlesArray[a].x,particlesArray[a].y);
+                ctx.lineTo(particlesArray[b].x,particlesArray[b].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particlesArray.forEach(p=>{
+        p.update();
+        p.draw();
+    });
+    connect();
+    requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+window.addEventListener("resize",()=>{
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+    init();
+});
+
+</script>
+
+</body>
+</html>
