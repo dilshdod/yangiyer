@@ -1,1 +1,174 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yangiyer Kunlik Ish | Foydalanish Shartlari</title>
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: { primary: "#4F46E5" },
+      borderRadius: { xxl: "26px" },
+      boxShadow: { glow: "0 20px 50px rgba(79,70,229,.35)" }
+    }
+  }
+}
+</script>
+
+<style>
+@keyframes gradientShift {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(270deg,#A1C4FD,#C2E9FB,#FBC2EB,#A6C1EE);
+  background-size: 600% 600%;
+  animation: gradientShift 30s ease infinite;
+  margin:0;
+  color:#1f2937;
+}
+
+.dark body {
+  background: linear-gradient(270deg,#111827,#1F2937,#374151);
+  color:#f3f4f6;
+}
+
+
+.side-img {
+  position: fixed;
+  width: 240px;
+  opacity: 0.85;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.side-img:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.left-top { left: 20px; top: 60px; }
+.left-bottom { left: 20px; bottom: 60px; }
+.right-top { right: 20px; top: 60px; }
+.right-bottom { right: 20px; bottom: 60px; }
+
+@media(max-width:1200px){
+  .side-img{ display:none; }
+}
+
+.rule {
+  padding:1.5rem;
+  border-radius:1rem;
+  font-weight:600;
+  color:#fff;
+  font-size:1.05rem;
+  line-height:1.6;
+  background: linear-gradient(135deg,#6366F1,#8B5CF6,#EC4899);
+  background-size:300% 300%;
+  animation: gradientShift 12s ease infinite;
+  transition: all 0.4s ease;
+}
+
+.rule:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:0 20px 40px rgba(0,0,0,0.35);
+}
+
+button {
+  font-weight:700;
+  font-size:1.05rem;
+  letter-spacing:0.5px;
+}
+
+section p {
+  font-size:1rem;
+  line-height:1.8;
+  color:#374151;
+}
+
+.dark section p {
+  color:#e5e7eb;
+}
+</style>
+</head>
+
+<body>
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="side-img left-top">
+<img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" class="side-img left-bottom">
+<img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" class="side-img right-top">
+<img src="https://cdn-icons-png.flaticon.com/512/2913/2913465.png" class="side-img right-bottom">
+
+<header class="text-center pt-16 pb-8">
+  <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+    Foydalanish shartlari
+  </h1>
+  <p class="text-gray-700 dark:text-gray-300 text-lg mt-2 max-w-xl mx-auto">
+    Saytdan foydalanish shartlari va foydalanuvchi majburiyatlari
+  </p>
+</header>
+
+<main class="flex justify-center px-4 pb-20">
+  <section class="max-w-2xl w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-xxl shadow-2xl p-10 space-y-6">
+
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+      “Yangiyer Kunlik Ish” platformasi foydalanuvchilarga Yangiyer hududidagi
+      ish e’lonlarini ko‘rish, qo‘shish va boshqarish imkonini beradi. 
+      Saytdan foydalanish orqali siz quyidagi shartlarga to‘liq rozilik bildirgan hisoblanasiz.
+    </p>
+
+    <div class="rule">
+      1. Foydalanuvchi tomonidan joylashtirilgan barcha ma’lumotlar haqqoniy, aniqlik va qonuniy bo‘lishi majburiydir.
+    </div>
+
+    <div class="rule">
+      2. Soxta e’lonlar, firibgarlik, haqoratli yoki noqonuniy kontent joylashtirish qat’iyan taqiqlanadi.
+    </div>
+
+    <div class="rule">
+      3. Sayt ma’muriyati shubhali yoki qoidalarga zid e’lonlarni ogohlantirishsiz o‘chirish huquqiga ega.
+    </div>
+
+    <div class="rule">
+      4. Foydalanuvchi o‘z shaxsiy ma’lumotlarini himoya qilish va maxfiyligini ta’minlash mas’uliyatini o‘z zimmasiga oladi.
+    </div>
+
+    <div class="rule">
+      5. Platformadan foydalanishda O‘zbekiston Respublikasi qonunlariga rioya qilinishi majburiydir.
+    </div>
+
+    <div class="rule">
+      6. E’lonlar orqali tuzilgan kelishuvlar bo‘yicha barcha javobgarlik ish beruvchi va ish izlovchi zimmasida bo‘ladi.
+    </div>
+
+    <div class="rule">
+      7. Platforma xizmatlarini takomillashtirish maqsadida ma’muriyat foydalanish shartlarini o‘zgartirish huquqini saqlab qoladi.
+    </div>
+
+    <button id="acceptBtn"
+      class="w-full py-3 rounded-xl bg-primary text-white font-semibold text-lg shadow-glow hover:scale-105 transition">
+      Shartlarga Roziman
+    </button>
+
+  </section>
+</main>
+
+<script>
+document.getElementById("acceptBtn").onclick = () => {
+  localStorage.setItem("termsAccepted","yes");
+  alert("Rahmat! Siz foydalanish shartlariga rozilik bildirdingiz.");
+};
+</script>
+
+</body>
+</html>
